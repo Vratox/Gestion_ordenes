@@ -4,7 +4,7 @@ from ordenes import views
 
 
 urlpatterns = [
-    path('', views.ordenes_view.as_view(), name='ordenes'),
+    path('', views.OrdenesView.as_view(), name='ordenes'),
     path('tableJson/', views.tableOrdenesJsonView.as_view(), name='tableOrdenesJson'),
     
 ]

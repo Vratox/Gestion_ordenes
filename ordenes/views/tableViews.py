@@ -4,7 +4,7 @@ from django.views import View
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from ordenes.models import Orden
-from ordenes.serializer import OrdenSerializer
+from ordenes.api.serializers import OrdenSerializer
 import json
 
 

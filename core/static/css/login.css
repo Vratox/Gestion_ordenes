@@ -1,3 +1,4 @@
+/* Contenedor login */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -51,8 +52,9 @@ body {
   pointer-events: none;
 }
 
+/* Animación flotante: focus o cuando no está vacío */
 .form-group input:focus + label,
-.form-group input:valid + label {
+.form-group input:not(:placeholder-shown) + label {
   top: -8px;
   left: 8px;
   font-size: 12px;

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Listado de Clientes{% endblock title %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block styles %}
+
+    <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" >
+    
+{% endblock styles %}
+
+{% block content %}
+
+    {% if error %}
+        <div id="errorModal" class="modal" style="display: block;">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <p id="errorMessage" class="text-danger">{{ error }}</p>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if user_new %}
+
+    <div id="userNewModal" class="modal" style="display: block;">
+        <div class="modal-dialog ">
+            <div class="modal-content modal-xl" id="modalContent">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="errorMessage" class="text">Usuario: {{ username }}</p>
+                    <form id="formPassword">
+                        {% csrf_token %}
+                        <input type="hidden" id="usernameUser" name="username" value="{{ username }}">
+                        
+                        <div class="mb-3">
+                            <label for="passwordUser" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="passwordUser" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="passwordRepeat" class="form-label">Repetir la Contraseña</label>
+                            <input type="password" class="form-control" id="passwordRepeat" name="password" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" id="btnSavePassword" class="btn btn-primary">Guardar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>        
+
+        <form action="/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                
+                <label for="username" >Usuario</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" >
+            </div>
+            <div class="form-group">
+                <button type="submit">Entrar</button>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+    <script src="/static/js/login.js"></script>  
+    
+{% endblock scripts %}

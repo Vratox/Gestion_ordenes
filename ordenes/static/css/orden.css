@@ -1,0 +1,83 @@
+#orden_cliente {
+  background-color: #f8f9fa; /* Color de fondo gris claro */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  max-width: 600px;
+  margin: 2rem auto; /* Centra el formulario */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px; /* Elimina el margen negativo de Bootstrap si no lo usas */
+}
+
+.col-md-12 {
+  padding: 0 15px;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #007bff; /* Color de borde al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+  resize: vertical; /* Permite redimensionar verticalmente */
+  min-height: 120px;
+}
+
+.btn-primary {
+  display: block; /* Para que el botón ocupe todo el ancho */
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary:active {
+  transform: translateY(1px); /* Efecto de "presionado" */
+}
+
+.error-message {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block; /* Asegura que cada mensaje de error esté en una nueva línea */
+}

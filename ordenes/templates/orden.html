@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Listado de Clientes{% endblock title %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block styles %}
+
+    <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/orden.css' %}">
+
+{% endblock styles %}
+
+{% block content %}
+
+    <h1>Ordenes</h1>
+
+    <form id="orden_cliente" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="titulo">Titulo:</label>
+                    {{ forms.titulo }}
+                    <span id="error-titulo" class="error-message text-danger"></span>                      
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="descripcion">Descripcion:</label>
+                    {{ forms.descripcion }}
+                    <span id="error-descripcion" class="error-message text-danger"></span>
+                </div>
+            </div>
+            <button type="button" id="crear_orden" class="btn btn-primary" >Crear orden</button>
+        </div>
+    </form>
+
+    <div id="table_orden">hola</div>
+    
+{% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+    <script src="/static/js/orden.js"></script>  
+    
+{% endblock scripts %}

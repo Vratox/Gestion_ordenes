@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de Clientes{% endblock title %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block styles %}
+
+    <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
+    
+    <!-- Tema estándar (default) -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_simple.min.css" rel="stylesheet"> {% endcomment %}
+    
+    <!-- Tema moderno -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_modern.min.css" rel="stylesheet">  {% endcomment %}
+
+    <!-- Tema bootstrap 3 -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_bootstrap3.min.css" rel="stylesheet"> {% endcomment %}
+
+    <!-- Tema bootstrap 4 -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet">  {% endcomment %}
+
+    <!-- Tema bootstrap 5 -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"> {% endcomment %}
+
+    <!-- Tema Bulma -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_bulma.min.css" rel="stylesheet"> {% endcomment %}
+    
+    <!-- Tema Materialize -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_materialize.min.css" rel="stylesheet"> {% endcomment %}
+    
+    <!-- Tema Semantic UI -->
+    <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_semanticui.min.css" rel="stylesheet">
+    
+    <!-- Tema Midnight (oscuro) -->
+    {% comment %} <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_midnight.min.css" rel="stylesheet">  {% endcomment %}
+
+
+
+
+
+
+    <link rel="stylesheet" href="/static/css/cliente.css">
+
+{% endblock styles %}
+
+{% block content %}
+    
+    <h2>Clientes</h2>
+
+    <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'logout_user' %}'">
+        cerrar sesión
+    </button>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalClienteCrear">
+        Crear cliente
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalClienteCrear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalClienteCrearLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalClienteCrearLabel">Crear cliente</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <form id="crear-cliente-form" method="post">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="id_nombre">Nombre:</label>
+                                {{ form.nombre }}
+                                <span id="error-nombre" class="error-message text-danger"></span>                      
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="id_email">Correo:</label>
+                                {{ form.email }}
+                                <span id="error-email" class="error-message text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" id="guardar_cliente" class="btn btn-primary">Crear</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        {% for cliente in clientes %}
+            <li>{{ cliente.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+    <div id="table_cliente">hola</div>
+    
+{% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+    <script src="/static/js/cliente.js"></script>  
+    
+{% endblock scripts %}
